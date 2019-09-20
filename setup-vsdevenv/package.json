@@ -1,0 +1,11 @@
+{
+  "name": "setup-vsdevenv",
+  "version": "1.0.0",
+  "description": "Setup VS dev environment for GitHub Actions",
+  "main": "index.js",
+  "author": "Sean Middleditch",
+  "license": "CC0",
+  "dependencies": {
+    "@actions/core": "^1.1.1"
+  }
+}
