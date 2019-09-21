@@ -1,0 +1,21 @@
+name: publish-to-git
+
+on: [push, pull_request]
+
+jobs:
+  test-setup-ninja:
+    name: test
+    runs-on: ${{ matrix.image }}
+
+    strategy:
+      matrix:
+        image: [ 'windows-latest', 'ubuntu-latest', 'macos-latest' ]
+
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
+      - run: |
+          cd setup-setup
+          npm install
+      - run: node setup-ninja/index.js
+      - run: ninja --version
