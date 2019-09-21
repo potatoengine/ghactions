@@ -1,4 +1,4 @@
-name: publish-to-git
+name: setup-ninja
 
 on: [push, pull_request]
 
