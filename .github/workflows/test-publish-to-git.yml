@@ -1,9 +1,10 @@
 name: publish-to-git
 
+on: [push, pull_request]
+
 jobs:
   test-publish-to-git:
     name: test
-
     runs-on: ubuntu-latest
 
     steps:
