@@ -44,12 +44,12 @@ try {
             const entry = zip.getEntries()[0]
 
             const fullDestDir = path.resolve(process.cwd(), destDir)
-            if (!fs.existsSync(fullDestDir)) {
-                fs.mkdirSync(fullDestDir, {recursive: true})
-            }
+            if (!fs.existsSync(fullDestDir)) fs.mkdirSync(fullDestDir, {recursive: true})
+
+            zip.extractEntryTo(entry.entryName, fullDestDir)
 
             const fullFileDir = path.join(fullDestDir, entry.entryName)
-            zip.extractEntryTo(entry.entryName, fullFileDir)
+            if (!fs.existsSync(fullFileDir)) throw new Error(`failed to extract to '${fullFileDir}'`)
 
             console.log(`extracted '${entry.entryName}' to '${fullFileDir}'`)
 
