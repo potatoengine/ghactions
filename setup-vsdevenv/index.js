@@ -4,6 +4,11 @@ const path = require('path')
 const spawn = require('child_process').spawnSync
 
 try {
+    // this job has nothing to do on non-Windows platforms
+    if (process.platform != 'win32') {
+        process.exit(0);
+    }
+
     const arch = core.getInput('arch') || 'amd64'
     const vswhere = core.getInput('vswhere') || 'vswhere.exe'
     const components = core.getInput('components') || 'Microsoft.VisualStudio.Component.VC.Tools.x86.x64'

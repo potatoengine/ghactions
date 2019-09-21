@@ -24,8 +24,7 @@ Usage Example
 jobs:
   publish:
     - uses: actions/checkout@master
-    - run: sh scripts/build-doxygen-html.sh --out static/html
     - uses: potatoengine/ghactions/setup-vsdevenv@master
-    - run: mkdir build && cd build && CXX=cl cmake ..
-    - run: cd build && cmake --build .
+    - run: mkdir build && cd build && cmake -DCMAKE_CXX_COMPILER=cl.exe ..
+    - run: cmake --build build
 ```
