@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions/setup-node@v1
       - run: |
-          cd setup-setup
+          cd setup-ninja
           npm install
       - run: node setup-ninja/index.js
       - run: ninja --version
