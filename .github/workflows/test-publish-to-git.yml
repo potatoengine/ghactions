@@ -1,6 +1,6 @@
 name: publish-to-git
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   test-publish-to-git:
