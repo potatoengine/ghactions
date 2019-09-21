@@ -56,6 +56,12 @@ try {
 
             console.log(`extracted '${entry.entryName}' to '${fullFileDir}'`)
 
+            const result = spawn(fullFileDir, ['--version'], {encoding: 'utf8'})
+            if (result.error) throw error
+
+            console.log('$ ninja --version')
+            console.log(result.stdout)
+
             core.addPath(fullDestDir)
         })
     })
