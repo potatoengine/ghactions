@@ -18,4 +18,6 @@ jobs:
           cd setup-ninja
           npm install
       - run: node setup-ninja/index.js
+        env:
+          input_version: 1.9.0
       - run: ninja --version
