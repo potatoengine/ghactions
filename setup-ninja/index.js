@@ -1,5 +1,6 @@
 const core = require('@actions/core')
 const process = require('process')
+const spawn = require('child_process').spawnSync
 const path = require('path')
 const fs = require('fs')
 const URL = require('url').URL
@@ -51,7 +52,15 @@ try {
             const fullFileDir = path.join(fullDestDir, entry.entryName)
             if (!fs.existsSync(fullFileDir)) throw new Error(`failed to extract to '${fullFileDir}'`)
 
+            fs.chmodSync(fullFileDir, '755')
+
             console.log(`extracted '${entry.entryName}' to '${fullFileDir}'`)
+
+            const result = spawn(fullFileDir, ['--version'], {encoding: 'utf8'})
+            if (result.error) throw error
+
+            console.log('$ ninja --version')
+            console.log(result.stdout)
 
             core.addPath(fullDestDir)
         })
