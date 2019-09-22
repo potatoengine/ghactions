@@ -8,15 +8,23 @@ inputs:
   build_path:
     description: 'Location of a compile_commands.json file'
     required: true
+  source_path:
+    description: 'Root location of source files'
+    required: true
   include:
     description: 'Glob pattern of source files to include (separate with semi-colons)'
     required: true
   exclude:
     description: 'Glob pattern of source files to exclude (separate with semi-colons)'
+  clang_tidy:
+    description: 'Path to clang-tidy'
+    default: 'clang-tidy'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.build_path }}
+    - ${{ inputs.source_path }}
     - ${{ inputs.include }}
     - ${{ inputs.exclude }}
+    - ${{ inputs.clang_tidy }}
