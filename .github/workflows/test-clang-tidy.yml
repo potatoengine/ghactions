@@ -1,0 +1,19 @@
+name: clang-tidy
+
+on: [pull_request]
+
+jobs:
+  test-setup-ninja:
+    name: test clang-tidy
+    runs-on: 'ubuntu-latest'
+
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
+      - run: |
+          echo "int main() { return 0; }" >> test.cpp
+          echo '[{"directory":"/src","command":"/usr/bin/clang++ -c -o test.o test.cpp","file":"test.cpp"}]' >> compile_commands.json
+      - uses: ./clang-tidy
+        with:
+          build_path: '.'
+          include: '*.cpp'
