@@ -4,10 +4,9 @@ const recursiveReaddirSync = require('recursive-readdir-sync')
 const minimatch = require('minimatch')
 const spawn = require('child_process').spawnSync
 
-const args = process.argv
-const build_path = args[0] || '.'
-const include = (args[1] || '*.cpp').split(';').filter(s => s.length != 0)
-const exclude = (args[2] || '').split(';').filter(s => s.length != 0)
+const build_path = process.argv[0] || '.'
+const include = (process.argv[1] || '*.cpp').split(';').filter(s => s.length != 0)
+const exclude = (process.argv[2] || '').split(';').filter(s => s.length != 0)
 
 const all = (list, func) => {
     for (const value of list) {
