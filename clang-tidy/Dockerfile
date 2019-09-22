@@ -1,5 +1,5 @@
 FROM alpine
-RUN apk --no-cache add node npm
+RUN apk add nodejs  npm
 
 WORKDIR /app
 COPY index.js .
@@ -9,7 +9,7 @@ COPY package-lock.json .
 RUN npm install
 
 FROM alpine
-RUN apk --no-cache add node npm
+RUN apk add nodejs  npm clang
 
 COPY --from=0 /app /app
 
