@@ -14,8 +14,6 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@v1
-      - run: |
-          cd setup-vsdevenv
-          npm install
-      - run: node setup-vsdevenv/index.js
+      - uses: ./setup-vsdevenv
       - run: cl.exe /version
+        if: runner.os == 'Windows'

@@ -14,10 +14,5 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@v1
-      - run: |
-          cd setup-ninja
-          npm install
-      - run: node setup-ninja/index.js
-        env:
-          input_version: 1.9.0
+      - uses: ./setup-ninja
       - run: ninja --version

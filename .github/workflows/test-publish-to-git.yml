@@ -10,13 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@v1
-      - run: |
-          cd publish-to-git
-          npm install
-      - run: |
-          node publish-to-git/index.js
-        env:
-          input_branch: master
-          input_github_token: '${{ secrets.GITHUB_TOKEN  }}'
-          input_source_folder: static/html
-          input_dry_run: true
+      - uses: ./publish-to-git
+        with:
+          branch: master
+          github_token: '${{ secrets.GITHUB_TOKEN  }}'
+          source_folder: static/html
+          dry_run: true
