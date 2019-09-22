@@ -13,6 +13,5 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
-      - uses: actions/setup-node@v1
       - uses: ./setup-ninja
       - run: ninja --version

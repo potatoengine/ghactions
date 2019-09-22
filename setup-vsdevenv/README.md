@@ -20,7 +20,7 @@ for details.
 Usage Example
 -------------
 
-```
+```yaml
 jobs:
   publish:
     - uses: actions/checkout@master
