@@ -35,7 +35,7 @@ try {
     console.log(`executing: ${clang_tidy} ${args.join(' ')}`)
 
     const result = spawn(clang_tidy, args, {encoding: 'utf8'})
-    if (result.error) throw error
+    if (result.error) throw result.error
     
     console.log(result.status)
     console.log(result.stdout)
