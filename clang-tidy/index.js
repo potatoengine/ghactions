@@ -7,11 +7,11 @@ const minimatch = require('minimatch')
 const spawn = require('child_process').spawnSync
 
 try {
-    const build_path = process.argv[0] || '.'
-    const source_path = process.argv[1] || '.'
-    const include = (process.argv[2] || '*.cpp').split(';').filter(s => s.length != 0)
-    const exclude = (process.argv[3] || '').split(';').filter(s => s.length != 0)
-    const clang_tidy = (process.argv[4] || 'clang-tidy')
+    const build_path = process.argv[1] || '.'
+    const source_path = process.argv[2] || '.'
+    const include = (process.argv[3] || '*.cpp').split(';').filter(s => s.length != 0)
+    const exclude = (process.argv[4] || '').split(';').filter(s => s.length != 0)
+    const clang_tidy = (process.argv[5] || 'clang-tidy')
 
     const database = path.join(build_path, 'compilation_database.json')
     if (!fs.existsSync(database)) throw new Error(`compilation database does not exist: '${database}`)
