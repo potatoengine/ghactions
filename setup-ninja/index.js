@@ -1,5 +1,6 @@
 const core = require('@actions/core')
 const process = require('process')
+const spawn = require('child_process').spawnSync
 const path = require('path')
 const fs = require('fs')
 const URL = require('url').URL
@@ -44,14 +45,22 @@ try {
             const entry = zip.getEntries()[0]
 
             const fullDestDir = path.resolve(process.cwd(), destDir)
-            if (!fs.existsSync(fullDestDir)) {
-                fs.mkdirSync(fullDestDir, {recursive: true})
-            }
+            if (!fs.existsSync(fullDestDir)) fs.mkdirSync(fullDestDir, {recursive: true})
+
+            zip.extractEntryTo(entry.entryName, fullDestDir)
 
             const fullFileDir = path.join(fullDestDir, entry.entryName)
-            zip.extractEntryTo(entry.entryName, fullFileDir)
+            if (!fs.existsSync(fullFileDir)) throw new Error(`failed to extract to '${fullFileDir}'`)
+
+            fs.chmodSync(fullFileDir, '755')
 
             console.log(`extracted '${entry.entryName}' to '${fullFileDir}'`)
+
+            const result = spawn(fullFileDir, ['--version'], {encoding: 'utf8'})
+            if (result.error) throw error
+
+            console.log('$ ninja --version')
+            console.log(result.stdout)
 
             core.addPath(fullDestDir)
         })
