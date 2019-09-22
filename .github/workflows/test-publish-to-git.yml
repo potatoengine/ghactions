@@ -14,5 +14,6 @@ jobs:
         with:
           branch: master
           github_token: '${{ secrets.GITHUB_TOKEN  }}'
-          source_folder: static/html
+          source_folder: publish-to-git
+          target_folder: action
           dry_run: true
