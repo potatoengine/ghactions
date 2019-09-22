@@ -1,0 +1,19 @@
+name: setup-vsdevenv
+
+on: [pull_request]
+
+jobs:
+  test-setup-vsdevenv:
+    name: test setup-vsdevenv
+    runs-on: ${{ matrix.image }}
+
+    strategy:
+      matrix:
+        image: [ 'windows-latest', 'ubuntu-latest' ]
+
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
+      - uses: ./setup-vsdevenv
+      - run: cl.exe
+        if: runner.os == 'Windows'

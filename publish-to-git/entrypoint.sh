@@ -39,6 +39,7 @@ COMMIT_MESSAGE="${INPUT_COMMIT_MESSAGE:-[${GITHUB_WORKFLOW}] Publish from ${GITH
 # Calculate the real source path.
 #
 SOURCE_PATH="$(realpath "${SOURCE_FOLDER}")"
+[ -z "${SOURCE_PATH}" ] && exit 1
 echo "::debug::SOURCE_PATH=${SOURCE_PATH}"
 
 # Let's start doing stuff.
