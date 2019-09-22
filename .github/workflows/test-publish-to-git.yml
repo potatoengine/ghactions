@@ -4,7 +4,7 @@ on: [pull_request]
 
 jobs:
   test-publish-to-git:
-    name: test
+    name: test publish-to-git
     runs-on: ubuntu-latest
 
     steps:

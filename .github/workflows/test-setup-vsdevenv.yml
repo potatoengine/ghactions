@@ -4,7 +4,7 @@ on: [pull_request]
 
 jobs:
   test-setup-vsdevenv:
-    name: test
+    name: test setup-vsdevenv
     runs-on: ${{ matrix.image }}
 
     strategy:

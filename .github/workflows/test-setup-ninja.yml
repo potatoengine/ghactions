@@ -4,7 +4,7 @@ on: [pull_request]
 
 jobs:
   test-setup-ninja:
-    name: test
+    name: test setup-ninja
     runs-on: ${{ matrix.image }}
 
     strategy:
