@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@master
       - run: |
           echo "int main() { return 0; }" >> test.cpp
-          echo '[{"directory":"/src","command":"/usr/bin/clang++ -c -o test.o test.cpp","file":"test.cpp"}]' >> compile_commands.json
+          echo '[{"directory":"/src","command":"/usr/bin/clang++ -c -o test.o test.cpp","file":"test.cpp"}]' >> compilation_database.json
       - uses: ./clang-tidy
         with:
           build_path: '.'
